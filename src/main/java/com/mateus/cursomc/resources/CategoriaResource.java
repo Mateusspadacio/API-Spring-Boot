@@ -10,17 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mateus.cursomc.domain.Categoria;
 import com.mateus.cursomc.services.CategoriaService;
 
-@RestController	
-@RequestMapping(value="/categorias")
+import javassist.tools.rmi.ObjectNotFoundException;
+
+@RestController
+@RequestMapping(value = "/categorias")
 public class CategoriaResource {
 
 	@Autowired
 	private CategoriaService service;
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Categoria obj = service.buscar(id);
+		Categoria obj;
+		obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
+
 	}
-	
+
 }
