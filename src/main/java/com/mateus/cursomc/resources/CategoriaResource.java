@@ -1,6 +1,5 @@
 package com.mateus.cursomc.resources;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mateus.cursomc.domain.Categoria;
 
-@RestController
+@RestController	
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
 
