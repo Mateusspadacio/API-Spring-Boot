@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import com.mateus.cursomc.domain.Categoria;
 import com.mateus.cursomc.dto.CategoriaDTO;
 import com.mateus.cursomc.repositories.CategoriaRepository;
-import com.mateus.cursomc.resources.exception.DataIntegrityException;
-import com.mateus.cursomc.resources.exception.ObjectNotFoundException;
+import com.mateus.cursomc.services.exception.DataIntegrityException;
+import com.mateus.cursomc.services.exception.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {

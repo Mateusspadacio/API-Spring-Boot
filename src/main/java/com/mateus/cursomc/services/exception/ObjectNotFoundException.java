@@ -1,4 +1,4 @@
-package com.mateus.cursomc.resources.exception;
+package com.mateus.cursomc.services.exception;
 
 public class ObjectNotFoundException extends RuntimeException{
 
