@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Pedido implements Serializable {
@@ -52,6 +51,14 @@ public class Pedido implements Serializable {
 		this.instante = instante;
 		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
+	}
+	
+	public double getValorTotal() {
+		Double total = 0d;
+		for (ItemPedido itemPedido : itens) {
+			total += itemPedido.getSubTotal();
+		}
+		return total;
 	}
 
 	public Integer getId() {
