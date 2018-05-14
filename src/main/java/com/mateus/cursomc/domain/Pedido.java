@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.mateus.cursomc.services.validation.utils.BR;
 
 @Entity
 public class Pedido implements Serializable {
@@ -133,6 +134,28 @@ public class Pedido implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido número: ");
+		builder.append(getId());
+		builder.append(", Instante: ");
+		builder.append(BR.formatBrDate(getInstante()));
+		builder.append(", Cliente: ");
+		builder.append(getCliente().getNome());
+		builder.append(", Situação do pagamento: ");
+		builder.append(getPagamento().getEstado().getDescricao());
+		builder.append("\nDetalhes:\n");
+		for (ItemPedido ip : getItens()) {
+			builder.append(ip.toString());
+		}
+		
+		builder.append("Valor total: ");
+		builder.append(BR.toBrCurrency(getValorTotal()));
+		return builder.toString();
 	}	
+	
 	
 }

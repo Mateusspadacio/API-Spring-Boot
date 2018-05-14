@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mateus.cursomc.domain.Cliente;
 import com.mateus.cursomc.domain.ItemPedido;
 import com.mateus.cursomc.domain.PagamentoComBoleto;
 import com.mateus.cursomc.domain.Pedido;
@@ -34,6 +35,9 @@ public class PedidoService {
 	
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
+	
+	@Autowired
+	private ClienteService clienteService;
 
 	public Pedido find(Integer id) {
 		Optional<Pedido> cliente = repo.findById(id);
@@ -52,16 +56,22 @@ public class PedidoService {
 			boletoService.preencherPagamentoComBoleto(pcb, obj.getInstante());
 		}
 		
+		Cliente cliente = clienteService.find(obj.getCliente().getId());
+		obj.setCliente(cliente);
+		
 		obj = repo.save(obj);
 		pagamentoRepository.save(obj.getPagamento());
 		
 		for (ItemPedido item : obj.getItens()) {
+			Produto produto = produtoService.find(item.getProduto().getId());
 			item.setDesconto(0d);
-			item.setPreco(produtoService.find(item.getProduto().getId()).getPreco());
+			item.setProduto(produto);
+			item.setPreco(produto.getPreco());
 			item.setPedido(obj);
 		}
 		
 		itemPedidoRepository.saveAll(obj.getItens());
+		System.out.println(obj);
 		return obj;
 	}
 

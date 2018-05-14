@@ -6,6 +6,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mateus.cursomc.services.validation.utils.BR;
 
 @Entity
 public class ItemPedido implements Serializable {
@@ -108,6 +109,21 @@ public class ItemPedido implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(getProduto().getNome());
+		builder.append(", Qte: ");
+		builder.append(getQuantidade());
+		builder.append(", Preço unitário: ");
+		builder.append(BR.toBrCurrency(getPreco()));
+		builder.append(", Subtotal: ");
+		builder.append(BR.toBrCurrency(getSubTotal()));
+		builder.append("\n");
+		
+		return builder.toString();
 	}
 	
 	
