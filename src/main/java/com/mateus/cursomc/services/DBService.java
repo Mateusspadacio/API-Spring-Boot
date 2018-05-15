@@ -146,15 +146,19 @@ public class DBService {
 		
 		Pedido ped1 = new Pedido(sdf.parse("30/09/2017 10:32"), cli1, e1);
 		Pedido ped2 = new Pedido(sdf.parse("10/10/2017 19:35"), cli1, e2);
+		Pedido ped3 = new Pedido(sdf.parse("10/12/2017 19:50"), cli2, e3);
 		
 		Pagamento pagto1 = new PagamentoComCartao(EstadoPagamento.QUITADO, ped1, 6);
 		ped1.setPagamento(pagto1);
 		Pagamento pagto2 = new PagamentoComBoleto(EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
 		ped2.setPagamento(pagto2);
+		Pagamento pagto3 = new PagamentoComBoleto(EstadoPagamento.PENDENTE, ped3, sdf.parse("10/12/2017 00:00"), null);
+		ped3.setPagamento(pagto3);
 		
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+		cli2.getPedidos().addAll(Arrays.asList(ped3));
 		
-		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2, ped3));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
 		
 		ItemPedido ip1 = new ItemPedido(ped1, p1, 0d, 1, 2000d);
