@@ -20,6 +20,7 @@ import com.mateus.cursomc.domain.PagamentoComCartao;
 import com.mateus.cursomc.domain.Pedido;
 import com.mateus.cursomc.domain.Produto;
 import com.mateus.cursomc.domain.enums.EstadoPagamento;
+import com.mateus.cursomc.domain.enums.Perfil;
 import com.mateus.cursomc.domain.enums.TipoCliente;
 import com.mateus.cursomc.repositories.CategoriaRepository;
 import com.mateus.cursomc.repositories.CidadeRepository;
@@ -126,13 +127,20 @@ public class DBService {
 		cli1.getTelefones().add("27363323");
 		cli1.getTelefones().add("93838393");
 		
+		Cliente cli2 = new Cliente(null, "Ana Silva", "f4isk@hotmail.com", "16434186029", TipoCliente.PESSOA_FISICA, pe.encode("123"));
+		cli2.addPerfil(Perfil.ADMIN);
+		cli2.getTelefones().add("345345345");
+		cli2.getTelefones().add("343453453");
+		
 		Endereco e1 = new Endereco("Rua Flores", "300", "Apto 203", "Jardim", "38220634", cli1, c1);
 		Endereco e2 = new Endereco("Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
+		Endereco e3 = new Endereco("Avenida Floriano", "2106", null, "Centro", "3645645", cli2, c2);
 		
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		cli1.getEnderecos().addAll(Arrays.asList(e3));
 		
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
