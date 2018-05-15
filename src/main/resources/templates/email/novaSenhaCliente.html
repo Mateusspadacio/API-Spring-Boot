@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Order Confirmation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div style="background-color: red;" align="left">
+		<h1>Cliente:</h1> <h2 th:text="${cliente.nome}"></h2>
+	</div>
+	<div style="background-color: rgb(177, 207, 188); width: 150px; height: 50px;">
+		Nova senha: <span style="color: white; font-size: 18px;" th:text="${newPass}"></span>
+	</div>
+</body>
+</html>

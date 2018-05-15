@@ -176,4 +176,8 @@ public class Cliente implements Serializable {
 	}
 	
 	
+	public String newPasswordMessage(String newPass) {
+		return "Cliente: " + getNome() + "\nNova senha: " + newPass;
+	}
+	
 }
