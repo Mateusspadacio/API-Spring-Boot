@@ -51,6 +51,9 @@ public class ClienteService {
 	@Value("${img.prefix.client.profile}")
 	private String imgPrefix;
 	
+	@Value("${img.profile.size}")
+	private Integer size;
+	
 	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
@@ -132,6 +135,9 @@ public class ClienteService {
 		}
 		
 		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		jpgImage = imageService.cropSquare(jpgImage);
+		jpgImage = imageService.resize(jpgImage, size);
+		
 		String fileName = imgPrefix + user.getId() + ".jpg";
 		return s3service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 		
