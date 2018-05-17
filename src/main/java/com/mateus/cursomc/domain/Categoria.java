@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Categoria implements Serializable {
@@ -20,9 +21,11 @@ public class Categoria implements Serializable {
 	private Integer id;
 	private String nome;
 	
+	private String urlImage;
+	
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
-
+	
 	public Categoria() {
 	}
 
@@ -55,7 +58,14 @@ public class Categoria implements Serializable {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-	
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
 
 	@Override
 	public int hashCode() {
