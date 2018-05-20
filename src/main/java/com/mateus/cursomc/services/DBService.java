@@ -73,13 +73,6 @@ public class DBService {
 		Categoria cat5 = new Categoria(null, "Jardinagem");
 		Categoria cat6 = new Categoria(null, "Decoração");
 		Categoria cat7 = new Categoria(null, "Perfumaria");
-		cat1.setUrlImage("/assets/categories/cat1.jpg");
-		cat2.setUrlImage("/assets/categories/cat2.jpg");
-		cat3.setUrlImage("/assets/categories/cat3.jpg");
-		cat4.setUrlImage("/assets/categories/cat4.jpg");
-		cat5.setUrlImage("/assets/categories/cat5.jpg");
-		cat6.setUrlImage("/assets/categories/cat6.jpg");
-		cat7.setUrlImage("/assets/categories/cat7.jpg");
 		
 		Produto p1 = new Produto(null, "Computador", 2000d);
 		Produto p2 = new Produto(null, "Impressora", 800d);

@@ -25,7 +25,7 @@ import com.mateus.cursomc.dto.ClienteNewDTO;
 import com.mateus.cursomc.services.ClienteService;
 
 @RestController
-@RequestMapping(value="clientes")
+@RequestMapping(value="/clientes")
 public class ClienteResources {
 
 	@Autowired
